@@ -62,10 +62,6 @@ import org.reactivestreams.Publisher;
  *  with injected `Cache` and client `Slice` instances and verifies that target slice
  *  doesn't invalidate the cache if checksums headers matches and invalidates cache if
  *  checksums doesn't match.
- * @todo #219:30min Change realization of response method.
- *  Now response method reading the content into memory for every request. This is bad
- *  especially if the file is large enough. This realization could be changed when the
- *  issue artipie/asto#286 will be resolved.
  * @checkstyle ClassDataAbstractionCouplingCheck (500 lines)
  */
 final class CachedProxySlice implements Slice {
