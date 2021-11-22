@@ -43,7 +43,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.cactoos.list.ListOf;
-import org.cactoos.scalar.Unchecked;
 import org.hamcrest.Matcher;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -308,15 +307,10 @@ final class AstoMavenTest {
             .map(Key::string)
             .filter(condition)
             .forEach(
-                item -> new Unchecked<>(
-                    () -> {
-                        new BlockingStorage(this.storage).save(
-                            new Key.From(base, item),
-                            new Unchecked<>(() -> bsto.value(new Key.From(item))).value()
-                        );
-                        return true;
-                    }
-                ).value()
+                item -> new BlockingStorage(this.storage).save(
+                    new Key.From(base, item),
+                    bsto.value(new Key.From(item))
+                )
         );
     }
 
