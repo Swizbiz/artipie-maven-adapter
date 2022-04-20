@@ -174,16 +174,4 @@ SOFTWARE.
       </plugins>
     </pluginManagement>
   </build>
-  <profiles>
-    <profile>
-      <id>artipie-central</id>
-      <distributionManagement>
-        <repository>
-          <id>artipie-central</id>
-          <name>Artipie central</name>
-          <url>https://central.artipie.com/artipie/maven</url>
-        </repository>
-      </distributionManagement>
-    </profile>
-  </profiles>
 </project>

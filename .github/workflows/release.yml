@@ -16,9 +16,10 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-jdk-11-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
-            ${{ runner.os }}-maven-
+            ${{ runner.os }}-jdk-11-maven-
+          runs-on: ubuntu-latest
       - name: Import GPG key
         uses: crazy-max/ghaction-import-gpg@v3
         with:
@@ -50,7 +51,7 @@ jobs:
               }
             ]
       - name: Deploy artifacts
-        run: mvn deploy -Partipie,publish,sonatype,gpg-sign -DskipITs --errors
+        run: mvn deploy -B -Partipie,sonatype,gpg-sign -DskipITs --errors
       - name: Create Github Release
         id: create_release
         uses: actions/create-release@v1
