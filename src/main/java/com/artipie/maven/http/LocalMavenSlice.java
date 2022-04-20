@@ -24,6 +24,7 @@
 package com.artipie.maven.http;
 
 import com.artipie.asto.Key;
+import com.artipie.asto.Meta;
 import com.artipie.asto.Storage;
 import com.artipie.asto.ext.KeyLastPart;
 import com.artipie.http.Response;
@@ -137,9 +138,9 @@ final class LocalMavenSlice implements Slice {
                 response = new PlainResponse(
                     this.storage, key,
                     () -> new AsyncResponse(
-                        this.storage.size(key).thenApply(
-                            size -> new RsWithHeaders(
-                                StandardRs.OK, new ContentLength(size.toString())
+                        this.storage.metadata(key).thenApply(
+                            meta -> new RsWithHeaders(
+                                StandardRs.OK, new ContentLength(meta.read(Meta.OP_SIZE).get())
                             )
                         )
                     )

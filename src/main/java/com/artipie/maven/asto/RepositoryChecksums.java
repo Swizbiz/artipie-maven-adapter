@@ -42,7 +42,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
-import org.cactoos.map.MapEntry;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 /**
  * Checksums for Maven artifact.
@@ -82,7 +82,7 @@ public final class RepositoryChecksums {
             .flatMapSingle(
                 item -> SingleInterop.fromFuture(
                     this.repo.value(item).thenCompose(pub -> new PublisherAs(pub).asciiString())
-                        .thenApply(hash -> new MapEntry<>(extension(item), hash))
+                        .thenApply(hash -> new ImmutablePair<>(extension(item), hash))
                 )
             ).reduce(
                 new HashMap<String, String>(),
