@@ -50,10 +50,10 @@ jobs:
                 }
               }
             ]
-      - name: Add add-opens options
-        run: export MAVEN_OPTS="--add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED"
       - name: Deploy artifacts
         run: mvn deploy -B -Partipie,sonatype,gpg-sign -DskipITs --errors
+        env:
+          MAVEN_OPTS: --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.text=ALL-UNNAMED --add-opens=java.desktop/java.awt.font=ALL-UNNAMED
       - name: Create Github Release
         id: create_release
         uses: actions/create-release@v1
