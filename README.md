@@ -1,36 +1,28 @@
-<img src="https://www.artipie.com/logo.svg" width="64px" height="64px"/>
+<a href="http://artipie.com"><img src="https://www.artipie.com/logo.svg" width="64px" height="64px"/></a>
+
+[![Join our Telegram group](https://img.shields.io/badge/Join%20us-Telegram-blue?&logo=telegram&?link=http://right&link=http://t.me/artipie)](http://t.me/artipie)
 
 [![EO principles respected here](https://www.elegantobjects.org/badge.svg)](https://www.elegantobjects.org)
 [![DevOps By Rultor.com](http://www.rultor.com/b/artipie/maven-adapter)](http://www.rultor.com/p/artipie/maven-adapter)
 [![We recommend IntelliJ IDEA](https://www.elegantobjects.org/intellij-idea.svg)](https://www.jetbrains.com/idea/)
 
 [![Javadoc](http://www.javadoc.io/badge/com.artipie/maven-adapter.svg)](http://www.javadoc.io/doc/com.artipie/maven-adapter)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/com.artipie/maven-adapter/blob/master/LICENSE.txt)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/artipie/maven-adapter/blob/master/LICENSE.txt)
 [![codecov](https://codecov.io/gh/artipie/maven-adapter/branch/master/graph/badge.svg)](https://codecov.io/gh/artipie/maven-adapter)
 [![Hits-of-Code](https://hitsofcode.com/github/artipie/maven-adapter)](https://hitsofcode.com/view/github/artipie/maven-adapter)
 [![Maven Central](https://img.shields.io/maven-central/v/com.artipie/maven-adapter.svg)](https://maven-badges.herokuapp.com/maven-central/com.artipie/maven-adapter)
 [![PDD status](http://www.0pdd.com/svg?name=artipie/maven-adapter)](http://www.0pdd.com/p?name=artipie/maven-adapter)
 
-# maven-adapter
-Maven repository adapter
+This Java library is turns binary storage (files, S3 objects, anything) into Maven repository. It 
+implements and can work with Maven repository structure and provides fully-functionable 
+[`mvn`](https://maven.apache.org/) support in [Artipie](https://github.com/artipie/artipie) 
+binary repository manager service.
 
-`com.artipie.maven.Maven` is the central entrypoint for all operations. It uses a
-`com.artipie.asto.Storage` to store Maven artifacts.
+If you have any question or suggestions, do not hesitate to [create an issue](https://github.com/artipie/maven-adapter/issues/new) or contact us in
+[Telegram](https://t.me/artipie).  
+Artipie [roadmap](https://github.com/orgs/artipie/projects/3).
 
-Current implementation is focused on generating metadata for artifacts on repository.
-
-Taking the repository described above in Layout section, for example, let's suppose that a new version, 
-`2.0` was uploaded to the repository. We generate the metadata this way: 
-
-```java
-    Metadata updated = new Maven(
-        storage
-    ).update("org.example.artifact");
-```
-
-The `metadata.xml` file will be generated with the recently added data pertaining to version `2.0`.
-
-## Maven concepts
+## Maven repository concepts
 
 ### Files
 
@@ -151,4 +143,4 @@ sending us your pull request please run full Maven build:
 ```
 $ mvn clean install -Pqulice
 ```
-To avoid build errors use Maven 3.2+.
+To avoid build errors use Maven 3.2+ and please read [contributing rules](https://github.com/artipie/artipie/blob/master/CONTRIBUTING.md).
