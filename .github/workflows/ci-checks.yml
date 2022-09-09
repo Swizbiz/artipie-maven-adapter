@@ -8,7 +8,7 @@ name: Maven Build
     branches:
       - master
 jobs:
-  maven-build:
+  maven_build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
