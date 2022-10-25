@@ -65,6 +65,11 @@ SOFTWARE.
       <artifactId>asto-core</artifactId>
       <version>v1.14.1</version>
     </dependency>
+    <dependency>
+      <groupId>com.vdurmont</groupId>
+      <artifactId>semver4j</artifactId>
+      <version>3.1.0</version>
+    </dependency>
     <!-- the rest -->
     <dependency>
       <groupId>com.jcabi</groupId>

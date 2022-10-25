@@ -4,8 +4,7 @@
  */
 package com.artipie.maven.metadata;
 
-import java.util.Arrays;
-import java.util.stream.Stream;
+import com.vdurmont.semver4j.Semver;
 
 /**
  * Artifact version.
@@ -28,19 +27,8 @@ public final class Version implements Comparable<Version> {
 
     @Override
     public int compareTo(final Version another) {
-        return Arrays.compare(
-            stringVersionToIntArray(this.value), stringVersionToIntArray(another.value)
-        );
-    }
-
-    /**
-     * Transforms.
-     * @param version Version to clean
-     * @return Version without snapshot
-     */
-    private static int[] stringVersionToIntArray(final String version) {
-        return Stream.of(version.replace("-SNAPSHOT", "").split("\\."))
-            .mapToInt(Integer::parseInt).toArray();
+        return new Semver(this.value, Semver.SemverType.LOOSE)
+            .compareTo(new Semver(another.value, Semver.SemverType.LOOSE));
     }
 
 }

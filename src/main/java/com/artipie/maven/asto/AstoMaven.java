@@ -14,7 +14,6 @@ import com.artipie.maven.Maven;
 import com.artipie.maven.http.PutMetadataSlice;
 import com.artipie.maven.metadata.MavenMetadata;
 import com.jcabi.xml.XMLDocument;
-import java.util.Collection;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
@@ -77,7 +76,7 @@ public final class AstoMaven implements Maven {
             )
                 .thenCompose(meta -> new RepositoryChecksums(this.storage).generate(meta))
                 .thenCompose(nothing -> this.moveToTheRepository(upload, target, artifact))
-                .thenCompose(nothing -> this.storage.list(upload).thenCompose(this::remove))
+                .thenCompose(nothing -> this.storage.deleteAll(upload))
             );
     }
 
@@ -113,18 +112,6 @@ public final class AstoMaven implements Maven {
                         ).collect(Collectors.toList())
                 ).copy(new SubStorage(artifact, target))
             )
-        );
-    }
-
-    /**
-     * Delete items from storage.
-     * @param items Keys to remove
-     * @return Completable remove operation
-     */
-    private CompletableFuture<Void> remove(final Collection<Key> items) {
-        return CompletableFuture.allOf(
-            items.stream().map(this.storage::delete)
-                .toArray(CompletableFuture[]::new)
         );
     }
 }
