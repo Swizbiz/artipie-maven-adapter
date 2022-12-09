@@ -2,7 +2,7 @@
 <!--
 MIT License
 
-Copyright (c) 2020 Artipie
+Copyright (c) 2020-2022 Artipie
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ SOFTWARE.
     <dependency>
       <groupId>com.artipie</groupId>
       <artifactId>http</artifactId>
-      <version>v1.1.4</version>
+      <version>v1.1.5</version>
     </dependency>
     <dependency>
       <groupId>com.artipie</groupId>
@@ -63,7 +63,12 @@ SOFTWARE.
     <dependency>
       <groupId>com.artipie</groupId>
       <artifactId>asto-core</artifactId>
-      <version>v1.13.0</version>
+      <version>v1.14.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.vdurmont</groupId>
+      <artifactId>semver4j</artifactId>
+      <version>3.1.0</version>
     </dependency>
     <!-- the rest -->
     <dependency>
